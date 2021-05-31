@@ -1,0 +1,12 @@
+<div id="search-component">
+  <kendo-textbox placeholder="Search for a book" #searchBox id="search-box" (input)="search(searchBox.value)">
+    <ng-template kendoTextBoxPrefixTemplate>
+      <button kendoButton look="clear" icon="search" [disabled]="true"></button>
+    </ng-template>
+  </kendo-textbox>
+  <ul *ngIf="selected == undefined" class="search-result">
+    <li *ngFor="let book of books$ | async" (click)=selectBook(book)>
+      <span>{{book.title}}</span>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,4 @@
+1. Load the 'online_bookshop_API' solution in Visual Studio.
+2. Run the application to start the Web API
+3. Open a console and navigate to the 'BookshopWebApp' directory.
+4. Assuming that Angular Cli is installed on the machine, run the command 'ng serve --open' to start the Web application.

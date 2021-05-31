@@ -1,0 +1,46 @@
+<h2>Books Available</h2>
+
+<kendo-grid [kendoGridBinding]="books" [pageSize]="5" [pageable]="true" [sortable]="true" [loading]="loading"
+  (edit)="editHandler($event)" (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler()"
+  style="margin-left: 0.2em; margin-right: 0.2em;" [navigable]="true">
+  <ng-template kendoGridToolbarTemplate>
+    <button kendoGridAddCommand>Add new</button>
+  </ng-template>
+  <kendo-grid-column field="id" title="ID" [editable]="false" [width]="80"></kendo-grid-column>
+  <kendo-grid-column field="title" title="Title" [width]="150">
+  </kendo-grid-column>
+  <kendo-grid-column field="description" title="Description" [width]="280">
+  </kendo-grid-column>
+  <kendo-grid-column field="summary" title="Summary" [width]="200">
+  </kendo-grid-column>
+  <kendo-grid-column field="isbn" title="ISBN" [width]="160">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="author" title="Author" [width]="150">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="year" title="Year" [width]="80">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.year | date: 'yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="price" title="Price" [width]="70">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.price | currency:'USD':'symbol'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="quantity" title="Quantity" [width]="90">
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Options">
+    <ng-template kendoGridCellTemplate>
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+      <button kendoGridRemoveCommand>Remove</button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+</kendo-grid>
+
+<app-edit-book [model]="editDataItem" [isNew]="isNew" (save)="saveHandler($event)" (cancel)="cancelHandler()">
+</app-edit-book>

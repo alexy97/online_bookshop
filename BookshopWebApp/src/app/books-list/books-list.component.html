@@ -1,0 +1,66 @@
+<div id="search-box">
+  <app-book-search (bookSelected)="bookSelectedHandler($event)"></app-book-search>
+</div>
+
+<div style="display: flex; justify-content: flex-end; margin-right: 0.2em;">
+  <kendo-floatinglabel text="Set Quantity Limit">
+    <kendo-numerictextbox #Limit [min]="0" [(ngModel)]="limit">
+    </kendo-numerictextbox>
+  </kendo-floatinglabel>
+</div>
+
+
+<kendo-grid [kendoGridBinding]="books" [pageSize]="5" [pageable]="true" [sortable]="true" [rowClass]="rowCallback"
+  [loading]="loading" [navigable]="true" id="book-list">
+  <kendo-grid-column field="title" title="Title" [headerStyle]="{
+      'background-color': '#666',
+      'color': '#fff',
+      'line-height': '1em',
+      'text-align': 'center'
+    }" [width]="150">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="author" title="Author" [headerStyle]="{
+   'background-color': '#666',
+   'color': '#fff',
+   'line-height': '1em',
+   'text-align': 'center'
+ }" [width]="140">
+  </kendo-grid-column>
+  <kendo-grid-column field="year" title="Year" [headerStyle]="{
+   'background-color': '#666',
+   'color': '#fff',
+   'line-height': '1em',
+   'text-align': 'center'
+ }" [width]="130">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.year | date: 'yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="price" title="Price" [headerStyle]="{
+   'background-color': '#666',
+   'color': '#fff',
+   'line-height': '1em',
+   'text-align': 'center'
+ }" [width]="80">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.price | currency:'USD':'symbol'}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-command-column [headerStyle]="{
+   'background-color': '#666',
+   'color': '#fff',
+   'line-height': '1em',
+   'text-align': 'center'
+ }" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <button kendoButton (click)="onSelect(dataItem)">Show Details</button>
+      <button kendoButton (click)="Buy(dataItem.title,dataItem.price)" [primary]="true">Buy Now</button>
+    </ng-template>
+
+  </kendo-grid-command-column>
+</kendo-grid>
+<div id="book-details-component">
+  <app-book-details [model]="selectedBook"></app-book-details>
+</div>

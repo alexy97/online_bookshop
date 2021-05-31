@@ -1,0 +1,85 @@
+<kendo-dialog *ngIf="active" [width]="300" [height]="450" (close)="closeForm()">
+  <kendo-dialog-titlebar>
+    {{ isNew ? "Add new book" : "Edit book" }}
+  </kendo-dialog-titlebar>
+
+  <form novalidate class="k-form" [formGroup]="editForm">
+    <kendo-formfield>
+      <kendo-label [for]="Title" text="Title"></kendo-label>
+      <input [max]="100" formControlName="title" kendoTextBox #Title required />
+      <kendo-formerror>Error: Title name is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="Description" text="Description"></kendo-label>
+      <input [max]="2000" formControlName="description" kendoTextBox #Description required />
+      <kendo-formerror>Error: Description name is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="Summary" text="Summary"></kendo-label>
+      <input [max]="500" formControlName="summary" kendoTextBox #Summary required />
+      <kendo-formerror>Error: Book summary is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="Isbn" text="ISBN"></kendo-label>
+      <input [max]="13" formControlName="isbn" kendoTextBox #Isbn required />
+      <kendo-formerror>Error: ISBN is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="Author" text="Author"></kendo-label>
+      <input formControlName="author" [max]="100" kendoTextBox #Author required />
+      <kendo-formerror>Error: Author is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-label style="margin-top: 1em;" [for]="imageSelect" text="Select an image"></kendo-label>
+    <kendo-fileselect #imageSelect (select)="imageSelectEventHandler($event)" [restrictions]="fileRestrictions">
+    </kendo-fileselect>
+
+    <kendo-formfield>
+      <kendo-label [for]="Price" text="Price"></kendo-label>
+      <kendo-numerictextbox [min]="minNumber" formControlName="price" #Price required>
+      </kendo-numerictextbox>
+
+      <kendo-formerror>Error: Price is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="numPages" text="Number of pages"></kendo-label>
+      <kendo-numerictextbox [min]="minNumber" formControlName="numPages" #numPages required>
+      </kendo-numerictextbox>
+
+      <kendo-formerror>Error: Number of pages is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="Quantity" text="Quantity"></kendo-label>
+      <kendo-numerictextbox [min]="minNumber" formControlName="quantity" #Quantity required>
+      </kendo-numerictextbox>
+      <kendo-formerror>Error: Quantity is required</kendo-formerror>
+    </kendo-formfield>
+    <kendo-formfield>
+      <kendo-label [for]="numPurchases" text="Number of purchases"></kendo-label>
+      <kendo-numerictextbox [min]="minNumber" formControlName="numPurchases" #numPurchases required>
+      </kendo-numerictextbox>
+
+      <kendo-formerror>Error: Number of purchases is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="year" text="Publish Year">
+      </kendo-label>
+      <kendo-dateinput #year formControlName="year" [format]="'yyyy'" required>
+      </kendo-dateinput>
+
+    </kendo-formfield>
+
+  </form>
+
+  <kendo-dialog-actions>
+    <button class="k-button" (click)="onCancel($event)">Cancel</button>
+    <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">
+      Save
+    </button>
+  </kendo-dialog-actions>
+</kendo-dialog>

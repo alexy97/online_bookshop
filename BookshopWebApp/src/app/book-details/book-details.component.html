@@ -1,0 +1,50 @@
+<div *ngIf="selectedBook!= undefined">
+  <kendo-dialog *ngIf="active" [width]="'40%'" [height]="'90%'" (close)="closeForm()">
+    <kendo-dialog-titlebar>
+      Details for {{selectedBook.title }}
+    </kendo-dialog-titlebar>
+    <kendo-card [width]="'100%'">
+      <kendo-card-header class="k-hbox">
+        <kendo-avatar width="40px" height="40px" [imageSrc]="thumbnailSrc" [shape]="'circle'"></kendo-avatar>
+        <div>
+          <h1 kendoCardTitle>{{selectedBook.title }}</h1>
+          <p kendoCardSubtitle>By {{selectedBook.author}}, Published in {{selectedBook.year | date: 'yyyy'}}</p>
+        </div>
+      </kendo-card-header>
+      <img [src]="cover" kendoCardMedia alt="cover_img" />
+      <kendo-card-body>
+
+        <hr kendoCardSeparator />
+        <span><b>Description</b></span>
+        <p class="description">{{selectedBook.description}}</p>
+
+        <hr kendoCardSeparator />
+        <span><b>Summary</b></span>
+        <p class="description">{{selectedBook.summary}}</p>
+
+        <hr kendoCardSeparator />
+        <span><b>Quantity</b></span>
+        <p>{{selectedBook.quantity}}</p>
+
+        <hr kendoCardSeparator />
+        <span><b>Number of pages</b></span>
+        <p>{{selectedBook.numPages}}</p>
+
+        <hr kendoCardSeparator />
+        <span><b>Price</b></span>
+        <p>{{selectedBook.price | currency:'USD':'symbol'}}</p>
+      </kendo-card-body>
+
+      <kendo-card-footer class="k-hbox">
+        <span>Quantity available: {{selectedBook.quantity}}</span>
+      </kendo-card-footer>
+    </kendo-card>
+    <kendo-dialog-actions>
+      <button class="k-button" (click)="onCancel($event)">Cancel</button>
+      <button class="k-button k-primary" (click)="Buy(selectedBook.title, selectedBook.price)">
+        Buy Now
+      </button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+
+</div>

@@ -1,0 +1,26 @@
+
+.k-header .k-link{
+    text-align: center;
+    background-color : #666;
+    color: #fff;
+    line-height: 1em;
+    text-align: center;
+    font-weight: bolder;
+ }
+ #search-box{
+  margin-left: 0.6em; 
+ }
+ #book-details-component{
+   margin-top: 0.5em;
+   margin-bottom: 0.5em;
+   display: flex;
+   justify-content: center;
+  
+ }
+ #book-list {
+  margin-left: 1em; 
+  margin-right: 0.2em;
+ }
+
+ :host ::ng-deep .k-grid tr.belowLimit { background-color: yellow; }
+ :host ::ng-deep .k-grid tr.aboveLimit { background-color: #fff; }
