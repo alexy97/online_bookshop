@@ -18,7 +18,6 @@ export class EditBookComponent {
     summary: new FormControl("", Validators.required),
     isbn: new FormControl("", Validators.required),
     author: new FormControl("", Validators.required),
-    image: new FormControl(null),
     year: new FormControl(new Date(), Validators.required),
     price: new FormControl("", Validators.required),
     numPages: new FormControl("", Validators.required),
@@ -66,9 +65,9 @@ export class EditBookComponent {
     // Setup onload event for reader
     reader.onload = () => {
       if (reader.result != null) {
-        // Store base64 encoded representation of file
-        this.editForm.patchValue({ image: reader.result });
-        console.log(this.editForm.get("image"))
+        // Logic not fully implemented
+        // this.editForm.patchValue({ image: reader.result });
+        // console.log(this.editForm.get("image"))
       }
     }
 
