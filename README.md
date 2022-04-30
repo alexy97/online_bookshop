@@ -1,1 +1,1 @@
-# online_bookshop
+Simple bookshop back-end
